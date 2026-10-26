@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,7 @@ export class App implements OnInit {
     this.http.get<{
       status: string;
       message: string;
-    }>('http://localhost:3000/health').subscribe({
+    }>(`${environment.apiUrl}/health`).subscribe({
       next: (response) => {
         console.log('Backend response received:', response);
         this.apiStatus = response.status;
